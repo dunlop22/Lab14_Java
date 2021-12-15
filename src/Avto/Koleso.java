@@ -4,10 +4,21 @@ package Avto;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Koleso extends Koleso_inf implements Cloneable{
+public class Koleso implements Comparable<Koleso> {
+//    public class Koleso implements Comparable<Koleso> extends Koleso_inf implements Cloneable{
     
-    
-public double okrujnost()
+    public int compareTo(Koleso koleso_temp) 
+    {
+        if (this.perimetr() < koleso_temp.perimetr()) 
+        {
+            return -1;
+        }
+        else 
+        {
+            return 1;
+        }
+    }
+    public double okrujnost()
     {
         return (this.diametr * 25.4 + this.visota / 100 * this.shirina);
     }
@@ -234,5 +245,4 @@ public double okrujnost()
         System.out.println("Диаметр: " + this.diametr);      
         System.out.println("Тип диска: " + this.tip_diska);
     }
-
 }

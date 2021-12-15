@@ -86,7 +86,7 @@ public class Main {
         Scanner in = new Scanner(System.in);        //инициализация сканера
         do
 	{
-            System.out.println("1) Общее\n2) Двигатель\n3) Коробка\n4) Колеса\n5) Автомобиль\n6) Сравнение (Шаблон)\n7) Сумма (Шаблон)\n8) Абстрактный класс\n9) Интерфейс\n0) Копирование");
+            System.out.println("1) Общее\n2) Двигатель\n3) Коробка\n4) Колеса\n5) Автомобиль\n6) Сравнение (Шаблон)\n7) Сумма (Шаблон)\n8) Сравнение (Контейнер)\n9) Интерфейс\n0) Копирование");
             main_key = in1.nextInt();
             switch (main_key) {
                 case 1:
@@ -380,10 +380,55 @@ public class Main {
                     break;
                 case 8:
                     key = 9;
+                    
+                    /*Лабораторная работа 14*/
+                    ArrayList Massiv_Koles = new ArrayList(); 
+                    Iterator MS = Massiv_Koles.iterator();
+                    Koleso kol_1 = new Koleso();
+                    Koleso kol_2 = new Koleso();
+                    Koleso kol_3 = new Koleso();
+                    Koleso_Zapaska zap1 = new Koleso_Zapaska();
+                    Koleso_Zapaska zap2 = new Koleso_Zapaska();
+                    Koleso_Zapaska zap3 = new Koleso_Zapaska();
+                    kol_1.new_koleso(235, 17, 55, "Литье");
+                    kol_2.new_koleso(285, 20, 55, "Литье");
+                    kol_3.new_koleso(265, 17, 5, "Литье");
+                    zap1.new_koleso(245, 18, 5, "Ковка");
+                    zap2.new_koleso(185, 15, 55, "Ковка");
+                    zap3.new_koleso(215, 18, 25, "Ковка");
+                    Massiv_Koles.add(kol_3);
+                    Massiv_Koles.add(kol_1);
+                    Massiv_Koles.add(zap3);
+                    Massiv_Koles.add(zap1);
+                    Massiv_Koles.add(kol_2);
+                    Massiv_Koles.add(zap3);
+                    
+                    
+                    System.out.printf("Сортировка колес по возрастанию окружности колеса:\n"); 
+                    for (int i = 0; i < Massiv_Koles.size(); i++) 
+                    { 
+                        Koleso Koleso_test = new Koleso();
+                        Koleso_test = (Koleso)Massiv_Koles.get(i);
+                        Koleso_test.prosmotr_koleso();
+                        System.out.printf("\nОкружность колеса: " + Koleso_test.perimetr() + "\n"); 
+                    } 
+                    
+                    Collections.sort(Massiv_Koles);
+                    System.out.printf("\n\n\nСписок колес после сортировки по возрастанию окружности колеса:\n"); 
+                    for (int i = 0; i < Massiv_Koles.size(); i++) 
+                    { 
+                        Koleso Koleso_test = (Koleso)Massiv_Koles.get(i);
+                        Koleso_test.prosmotr_koleso();
+                        System.out.printf("\nОкружность колеса: " + Koleso_test.perimetr() + "\n"); 
+                    }
+                    
+                    
                     /*Лабораторная работа 12*/
+                    /*
                     Koleso info = new Koleso(18, 265, 45, "Литье");
                     System.out.printf("Объем колеса: " + info.obem()+ "м^3\n\n");
                     System.out.printf("Периметр колеса: " + info.perimetr()+ "мм\n\n");
+                    */
                     /*
                     Koleso[][] Kol_mass_ = new Koleso[4][4];
                     Koleso temp1 = new Koleso();
