@@ -1,7 +1,6 @@
 package Avto;
-
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Koleso implements Comparable<Koleso> {
@@ -18,6 +17,10 @@ public class Koleso implements Comparable<Koleso> {
             return 1;
         }
     }
+    
+    
+    
+    
     public double okrujnost()
     {
         return (this.diametr * 25.4 + this.visota / 100 * this.shirina);

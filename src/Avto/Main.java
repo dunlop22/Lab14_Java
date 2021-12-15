@@ -10,6 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static int poisk(int number, ArrayList Massiv_Koles, int min, int max) 
+    { 
+        for (; number < Massiv_Koles.size(); number++) 
+        { 
+            Koleso Koleso_test = (Koleso)Massiv_Koles.get(number); 
+            if (Koleso_test.diametr >= min && Koleso_test.diametr <= max) 
+            {
+                return number;
+            } 
+        } 
+        return -1; 
+    }
+    
     public static class Summa<T extends Motor>
     {
         public Summa()
@@ -86,7 +99,7 @@ public class Main {
         Scanner in = new Scanner(System.in);        //инициализация сканера
         do
 	{
-            System.out.println("1) Общее\n2) Двигатель\n3) Коробка\n4) Колеса\n5) Автомобиль\n6) Сравнение (Шаблон)\n7) Сумма (Шаблон)\n8) Сравнение (Контейнер)\n9) Интерфейс\n0) Копирование");
+            System.out.println("1) Общее\n2) Двигатель\n3) Коробка\n4) Колеса\n5) Автомобиль\n6) Сравнение (Шаблон)\n7) Сумма (Шаблон)\n8) Сравнение (Контейнер)\n9) Поиск (Контейнер)\n0) Копирование");
             main_key = in1.nextInt();
             switch (main_key) {
                 case 1:
@@ -498,7 +511,72 @@ public class Main {
                     break;
                 case 9:
                     key = 9;
+                    /*Лабораторная работа 14*/
+                    
+                    ArrayList Massiv_Koles1 = new ArrayList(); 
+                    Iterator MS1 = Massiv_Koles1.iterator();
+                    Koleso kol_11 = new Koleso();
+                    Koleso kol_21 = new Koleso();
+                    Koleso kol_31 = new Koleso();
+                    Koleso_Zapaska zap11 = new Koleso_Zapaska();
+                    Koleso_Zapaska zap21 = new Koleso_Zapaska();
+                    Koleso_Zapaska zap31 = new Koleso_Zapaska();
+                    kol_11.new_koleso(235, 17, 55, "Литье");
+                    kol_21.new_koleso(285, 20, 55, "Литье");
+                    kol_31.new_koleso(265, 17, 5, "Литье");
+                    zap11.new_koleso(245, 18, 5, "Ковка");
+                    zap21.new_koleso(185, 15, 55, "Ковка");
+                    zap31.new_koleso(215, 18, 25, "Ковка");
+                    Massiv_Koles1.add(kol_31);
+                    Massiv_Koles1.add(kol_11);
+                    Massiv_Koles1.add(zap31);
+                    Massiv_Koles1.add(zap11);
+                    Massiv_Koles1.add(kol_21);
+                    Massiv_Koles1.add(zap31);
+                    
+                    for (int i = 0; i < Massiv_Koles1.size(); i++) 
+                    { 
+                        Koleso Koleso_test = new Koleso(); 
+                        Koleso_test = (Koleso)Massiv_Koles1.get(i); 
+                        Koleso_test.prosmotr_koleso();
+                        System.out.printf("\n"); 
+                    } 
+                    
+                    int min, max;
+                    System.out.printf("\n\nВведите минимальное значение диаметра колеса для поиска: ");
+                    do
+                    {
+                        min = in1.nextInt();
+                        if (min < 0)
+                        {
+                            System.out.printf("Данное значение недопустимо.\nПовторите ввод: ");
+                        }
+                    } while (min < 0);
+
+                    System.out.printf("Введите максимальное значение диаметра колеса для поиска: ");
+                    do
+                    {
+                        max = in1.nextInt();
+                        if (max < min)
+                        {
+                            System.out.printf("Данное значение недопустимо.\nПовторите ввод: ");
+                        }
+                    } while (max < 0 && max < min);
+
+                    System.out.printf("\n\n\nКолеса, удовлетворяющие запросу:\n\n\n"); 
+                    for(int i = 0; i < Massiv_Koles1.size(); i++)
+                    { 
+                        int number; 
+                        number = poisk(i,Massiv_Koles1, min, max); 
+                        if (number != -1) //найден удовлетворяющий элемент
+                        { 
+                            Koleso Koleso_test = (Koleso)Massiv_Koles1.get(number); 
+                            Koleso_test.prosmotr_koleso();
+                            i = number; 
+                        } 
+                    } 
                     /*Лабораторная работа 12*/
+                    /*
                     Motor Motorik = new Motor();
                     Motor Motorik1 = new Motor();
                     Motorik.new_motor("FB20", 150, 4, 8, 4, 2.0);
@@ -509,7 +587,7 @@ public class Main {
 
                     System.out.println("\n\nДвигатель №2\n\nМаксимальное значение мощности в кВТ: " + Math.round(Motorik1.Max_KWT()));
                     System.out.println("Текущее значение мощности в кВТ: " + Math.round(Motorik1.KWT()));
-                    
+                    */
                     break;
                 case 0:
                     key = 9;
